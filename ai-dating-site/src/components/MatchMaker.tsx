@@ -17,6 +17,30 @@ const MatchMaker = () => {
       status: 'In Chat',
       image: 'https://via.placeholder.com/150',
       inviteUrl: 'https://invite.ai/luna'
+    },{
+      id: 3,
+      name: 'Alexa AI',
+      status: 'In Chat',
+      image: 'https://via.placeholder.com/150',
+      inviteUrl: 'https://invite.ai/Alexa'
+    },{
+      id: 4,
+      name: 'Tim AI',
+      status: 'In Chat',
+      image: 'https://via.placeholder.com/150',
+      inviteUrl: 'https://invite.ai/Tim'
+    },{
+      id: 5,
+      name: 'Carolin AI',
+      status: 'In Chat',
+      image: 'https://via.placeholder.com/150',
+      inviteUrl: 'https://invite.ai/Carolin'
+    },{
+      id: 6,
+      name: 'Cypher AI',
+      status: 'In Chat',
+      image: 'https://via.placeholder.com/150',
+      inviteUrl: 'https://invite.ai/Cypher'
     }
   ];
 
