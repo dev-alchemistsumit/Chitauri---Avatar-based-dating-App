@@ -21,7 +21,7 @@ const MatchMaker = () => {
   ];
 
   return (
-    <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="bg-cyberpunk-bg p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
       {matches.map(user => (
         <div key={user.id} className="bg-white rounded shadow p-4">
           <img src={user.image} alt={user.name} className="rounded w-full h-40 object-cover mb-4" />
