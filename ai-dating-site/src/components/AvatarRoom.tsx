@@ -1,7 +1,8 @@
+
 // src/components/AvatarRoom.tsx
-import React from "react";
-import ChatInterface from "./ChatInterface";
-import AvatarModel from "./AvatarModel/AvatarModel";
+import React from 'react';
+import ChatInterface from './ChatInterface';
+import AvatarModel from './AvatarModel/Russian_Girl_AvatarModel';
 
 const AvatarRoom = () => {
   return (
