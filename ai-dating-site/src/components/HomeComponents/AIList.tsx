@@ -26,10 +26,6 @@ const AIListSection = () => (
                 } animate-pulse`}
               />
             </div>
-            <div className="w-full h-[250px] mb-4">
-              <AvatarModel />
-            </div>
-
             <p className="text-gray-400 mb-4">Status: {ai.status}</p>
             <button className="px-4 py-2 bg-cyberpunk-accent text-black rounded hover:bg-opacity-90">
               Chat Now

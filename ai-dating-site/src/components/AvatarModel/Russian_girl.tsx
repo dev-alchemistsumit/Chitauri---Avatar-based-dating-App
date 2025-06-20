@@ -4,18 +4,12 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, useGLTF, useAnimations } from '@react-three/drei';
 
 const Model = () => {
-  const gltf = useGLTF('/models/russian_girl_west_animated.glb');
+  const gltf = useGLTF('/models/russian_girl_mid_animated.glb');
   const { actions, names } = useAnimations(gltf.animations, gltf.scene);
 
   useEffect(() => {
-    console.log('Available Animations:', names);
-    const waveAnim = names.find((n) => n.toLowerCase().includes('wave'));
-    if (waveAnim) {
-      actions[waveAnim]?.reset().fadeIn(0.5).play();
-    } else if (names[0]) {
       actions[names[0]]?.reset().fadeIn(0.5).play();
-    }
-  }, [actions, names]);
+    }, [actions, names]);
 
   return <primitive object={gltf.scene} scale={1.5} position={[0, -2.5, 0]} />;
 };
