@@ -1,6 +1,6 @@
 // src/components/Navbar.tsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -15,16 +15,17 @@ const Navbar = () => {
         <Link to="/chat-interface" className="hover:text-cyberpunk-accent">
           Chat Interface
         </Link>
-        <Link to="/match-maker" className="hover:text-cyberpunk-accent">
-          Match Maker
-        </Link>
         <Link to="/relationship-stats" className="hover:text-cyberpunk-accent">
           Relationship Stats
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        <Link to="/help" className="hover:text-cyberpunk-accent">Help</Link>
-        <Link to="/about" className="hover:text-cyberpunk-accent">About Us</Link>
+        <Link to="/help" className="hover:text-cyberpunk-accent">
+          Help
+        </Link>
+        <Link to="/about" className="hover:text-cyberpunk-accent">
+          About Us
+        </Link>
       </div>
     </nav>
   );

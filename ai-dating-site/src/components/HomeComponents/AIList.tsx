@@ -1,40 +1,75 @@
+// src/components/HomeComponents/AIListSection.tsx
+
 import React from "react";
 import { Link } from "react-router-dom";
-import AvatarModel from "../AvatarModel/Russian_Girl_AvatarModel";
+import GirlInYellow from "../AvatarModel/girl_in_yellow";
+import RussianGirl from "../AvatarModel/Russian_Girl_AvatarModel";
 
-const aiList = [
-  { id: 1, name: "Ava", status: "Available", link: "/chat-interface" },
-  { id: 2, name: "Luna", status: "In Chat", link: "/chat-interface" },
-  { id: 3, name: "Alexa", status: "Available", link: "/chat-interface" },
-  { id: 4, name: "Tim", status: "Available", link: "/chat-interface" },
-  { id: 5, name: "Carolin", status: "In Chat", link: "/chat-interface" },
-  { id: 6, name: "Cypher", status: "Available", link: "/chat-interface" },
+// import GirlInYellow from "../AvatarModel/girl_in_yellow";
+// import RussianGirl from "../AvatarModel/Russian_girl";
+
+const models = [
+  {
+    id: "yellow",
+    name: "Ava",
+    Component: GirlInYellow,
+    status: "Available",
+    link: "/avatar-room",
+    description: "An AI companion eager to meet you. Intimacy , connection, and endless digital memories await.",
+  },
+  {
+    id: "russian",
+    name: "Christina",
+    Component: RussianGirl,
+    status: "Available",
+    link: "/avatar-room",
+    description: "She understands your silence. Built to comfort, crafted to connect. Your AI story begins here.",
+  },
 ];
 
-const AIListSection = () => (
-  <section className="p-8">
-    <h2 className="text-3xl font-bold mb-6">Meet Our AI Companions</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {aiList.map((ai) => (
-        <Link to={ai.link} key={ai.id} className="block">
-          <div className="bg-gray-800 rounded-lg p-4 hover:ring-2 hover:ring-cyberpunk-accent transition">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-xl font-semibold">{ai.name}</h3>
+const AIListSection = () => {
+  return (
+    <section className="p-8 bg-gradient-to-br from-cyberpunk-neonPurple to-cyberpunk-neonBlue">
+      <h2 className="text-3xl font-bold mb-8 text-center text-white">Interactive AI Companions</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {models.map(({ id, name, Component, status, link, description }) => (
+          <div
+            key={id}
+            className="bg-gray-900 p-5 rounded-xl shadow-lg border border-gray-700 flex flex-col relative"
+          >
+            {/* Status dot */}
+            <div className="absolute top-4 right-4 flex items-center space-x-2">
               <span
                 className={`h-3 w-3 rounded-full ${
-                  ai.status === "Available" ? "bg-green-400" : "bg-yellow-400"
+                  status === "Available" ? "bg-green-400" : "bg-yellow-400"
                 } animate-pulse`}
               />
             </div>
-            <p className="text-gray-400 mb-4">Status: {ai.status}</p>
-            <button className="px-4 py-2 bg-cyberpunk-accent text-black rounded hover:bg-opacity-90">
+
+            {/* 3D Avatar */}
+            <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] mb-4">
+              <Component />
+            </div>
+
+            {/* Name & Description */}
+            <h3 className="text-2xl font-semibold text-center text-cyberpunk-accent mb-2">
+              {name}
+            </h3>
+            <p className="text-gray-300 text-center mb-4">{description}</p>
+
+            {/* Chat Now Button */}
+            <Link
+              to={link}
+              className="self-center mt-auto bg-cyberpunk-accent text-black font-medium px-5 py-2 rounded hover:bg-opacity-90 transition"
+            >
               Chat Now
-            </button>
+            </Link>
           </div>
-        </Link>
-      ))}
-    </div>
-  </section>
-);
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default AIListSection;

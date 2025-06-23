@@ -8,7 +8,6 @@ import Field_Image3 from "../assets/Field/field3.jpg";
 
 import Hero from "../components/HomeComponents/Hero";
 import AIList from "../components/HomeComponents/AIList";
-import AvatarPreview from "../components/HomeComponents/AvatarPreview";
 import Review from "../components/HomeComponents/Review";
 import Footer from "../components/HomeComponents/Footer";
 
@@ -28,7 +27,6 @@ const Home = () => {
     <div className="bg-cyberpunk-bg text-white">
       <Hero image={headerImages[carouselIndex]} />
       <AIList />
-      <AvatarPreview />
       <Review />
       <Footer />
     </div>
