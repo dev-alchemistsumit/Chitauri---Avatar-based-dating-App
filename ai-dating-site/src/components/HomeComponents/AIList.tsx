@@ -2,11 +2,8 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import GirlInYellow from "../AvatarModel/girl_in_yellow";
-import RussianGirl from "../AvatarModel/Russian_Girl_AvatarModel";
-
-// import GirlInYellow from "../AvatarModel/girl_in_yellow";
-// import RussianGirl from "../AvatarModel/Russian_girl";
+import GirlInYellow from "../AvatarModels/girl_in_yellow";
+import RussianGirl from "../AvatarModels/Russian_Girl_AvatarModel";
 
 const models = [
   {
@@ -15,7 +12,8 @@ const models = [
     Component: GirlInYellow,
     status: "Available",
     link: "/avatar-room",
-    description: "An AI companion eager to meet you. Intimacy , connection, and endless digital memories await.",
+    description:
+      "An AI companion eager to meet you. Intimacy and connection awaits.",
   },
   {
     id: "russian",
@@ -23,14 +21,17 @@ const models = [
     Component: RussianGirl,
     status: "Available",
     link: "/avatar-room",
-    description: "She understands your silence. Built to comfort, crafted to connect. Your AI story begins here.",
+    description:
+      "She understands your silence. Built to comfort, crafted to connect. Your AI story begins here.",
   },
 ];
 
 const AIListSection = () => {
   return (
     <section className="p-8 bg-gradient-to-br from-cyberpunk-neonPurple to-cyberpunk-neonBlue">
-      <h2 className="text-3xl font-bold mb-8 text-center text-white">Interactive AI Companions</h2>
+      <h2 className="text-3xl font-bold mb-8 text-center text-white">
+        Interactive AI Companions
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {models.map(({ id, name, Component, status, link, description }) => (
@@ -61,6 +62,7 @@ const AIListSection = () => {
             {/* Chat Now Button */}
             <Link
               to={link}
+              state={{ selectedAvatar: id }} // Pass avatar identifier
               className="self-center mt-auto bg-cyberpunk-accent text-black font-medium px-5 py-2 rounded hover:bg-opacity-90 transition"
             >
               Chat Now

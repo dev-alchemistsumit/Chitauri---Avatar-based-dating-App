@@ -12,9 +12,7 @@ const Navbar = () => {
         <Link to="/avatar-room" className="hover:text-cyberpunk-accent">
           Avatar Room
         </Link>
-        <Link to="/chat-interface" className="hover:text-cyberpunk-accent">
-          Chat Interface
-        </Link>
+
         <Link to="/relationship-stats" className="hover:text-cyberpunk-accent">
           Relationship Stats
         </Link>

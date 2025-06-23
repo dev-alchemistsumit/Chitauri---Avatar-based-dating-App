@@ -19,7 +19,7 @@ const Model = () => {
 const AvatarModel = () => {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [0, 1.5, 5], fov: 35 }}>
+      <Canvas camera={{ position: [0, 1.5, 5], fov: 40  }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[2, 3, 5]} intensity={1} />
         <Suspense fallback={null}>
