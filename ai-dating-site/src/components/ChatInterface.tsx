@@ -43,6 +43,7 @@ const ChatInterface = () => {
     console.error('ChatGPT Error:', error);
     setMessages((prev) => [...prev, { sender: 'AI', text: 'Sorry, something went wrong.' }]);
   }
+  
 };
 
 
