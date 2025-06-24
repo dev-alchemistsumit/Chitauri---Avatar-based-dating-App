@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 //Open AI SDK 4.x
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
 
 //chat endpoints
 app.post("/api/chat", async (req, res) => {
