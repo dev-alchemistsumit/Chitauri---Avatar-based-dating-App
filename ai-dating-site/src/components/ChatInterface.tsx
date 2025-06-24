@@ -21,15 +21,30 @@ const ChatInterface = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const sendMessage = () => {
-    if (!input.trim()) return;
-    const updated = [...messages, { sender: 'You', text: input }];
-    setMessages(updated);
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { sender: 'AI', text: `Echo: ${input}` }]);
-    }, 500);
-    setInput('');
-  };
+  //ChatGPT assembly 
+  const sendMessage = async () => {
+  if (!input.trim()) return;
+
+  const newMessages = [...messages, { sender: 'You', text: input }];
+  setMessages(newMessages);
+  setInput('');
+
+  try {
+    const res = await fetch('http://localhost:5000/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: input }),
+    });
+
+    const data = await res.json();
+
+    setMessages((prev) => [...prev, { sender: 'AI', text: data.reply }]);
+  } catch (error) {
+    console.error('ChatGPT Error:', error);
+    setMessages((prev) => [...prev, { sender: 'AI', text: 'Sorry, something went wrong.' }]);
+  }
+};
+
 
   return (
     <div className="flex flex-col h-full max-h-screen overflow-hidden">

@@ -3,6 +3,8 @@
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import { ClerkProvider } from "@clerk/clerk-react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Header/Navbar";
 import Home from "./components/Home";
@@ -10,6 +12,8 @@ import AvatarRoom from "./components/AvatarRoom";
 import RelationshipStats from "./components/RelationshipStats";
 import Help from "./components/Help";
 import AboutUs from "./components/AboutUs";
+
+
 
 function App() {
   return (
