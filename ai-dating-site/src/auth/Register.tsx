@@ -16,7 +16,9 @@ const Register = () => {
     password: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -25,7 +27,11 @@ const Register = () => {
     e.preventDefault();
     try {
       const { email, password, ...profileData } = formData;
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
       await setDoc(doc(db, "users", user.uid), profileData);
       navigate("/home");
@@ -35,13 +41,7 @@ const Register = () => {
   };
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center flex items-center justify-center"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1530023367847-a683933f417c?auto=format&fit=crop&w=1470&q=80')",
-      }}
-    >
+    <div className="min-h-screen bg-cover bg-center flex items-center justify-center">
       <div className="bg-white bg-opacity-80 backdrop-blur-md p-8 rounded-2xl shadow-lg max-w-md w-full mx-4 sm:mx-8 md:mx-0">
         <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
           Create an Account 💑
@@ -101,7 +101,7 @@ const Register = () => {
           </button>
         </form>
         <p className="mt-4 text-sm text-center">
-          Already a user?{' '}
+          Already a user?{" "}
           <Link to="/login" className="text-blue-700 hover:underline">
             Login here
           </Link>
