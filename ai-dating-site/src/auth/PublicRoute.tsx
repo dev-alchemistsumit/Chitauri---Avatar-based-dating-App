@@ -1,15 +1,15 @@
-// src/components/ProtectedRoute.tsx
+// src/auth/PublicRoute.tsx
 import { Navigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+const PublicRoute = ({ children }: { children: JSX.Element }) => {
   const [user, loading] = useAuthState(auth);
 
   if (loading) return <div>Loading...</div>;
-  if (!user) return <Navigate to="/login" />;
+  if (user) return <Navigate to="/home" replace />;
 
   return children;
 };
 
-export default ProtectedRoute;
+export default PublicRoute;
