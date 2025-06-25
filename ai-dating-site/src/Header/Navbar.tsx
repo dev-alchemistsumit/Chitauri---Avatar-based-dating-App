@@ -40,11 +40,12 @@ const Navbar = () => {
         </Link>
         {user && (
           <div className="relative group">
-            <button className="flex items-center space-x-2 hover:text-cyberpunk-accent">
-              <FaUserCircle size={24} />
-              <span className="hidden sm:block">Profile</span>
-            </button>
-
+            <Link to="/Userprofile">
+              <button className="flex items-center space-x-2 hover:text-cyberpunk-accent">
+                <FaUserCircle size={24} />
+                <span className="hidden sm:block">Profile</span>
+              </button>
+            </Link>
             {/* Dropdown shown on hover */}
             <div className="absolute right-0 mt-2 w-32 bg-white text-black rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-200 z-50">
               <button

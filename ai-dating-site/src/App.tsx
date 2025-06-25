@@ -15,7 +15,7 @@ import ProtectedRoute from "../src/auth/ProtectedRoute";
 import PageNotFound from "../src/auth/PageNotFound";
 import PublicRoute from "../src/auth/PublicRoute";
 
-import UserProfile from "./components/User/UserProfile"
+import UserProfile from "./components/User/UserProfile";
 
 import Navbar from "./Header/Navbar"; // move inside protected layout
 
@@ -50,13 +50,13 @@ function App() {
         />
 
         <Route
-  path="/profile"
-  element={
-    <ProtectedRoute>
-      <UserProfile />
-    </ProtectedRoute>
-  }
-/>
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Protected Routes */}
         <Route
@@ -110,6 +110,17 @@ function App() {
               <>
                 <Navbar />
                 <AboutUs />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Userprofile"
+          element={
+            <ProtectedRoute>
+              <>
+                <Navbar />
+                <UserProfile />
               </>
             </ProtectedRoute>
           }

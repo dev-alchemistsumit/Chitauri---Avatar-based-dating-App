@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -50,6 +52,12 @@ const Login = () => {
             Login
           </button>
         </form>
+         <p className="mt-4 text-sm text-center">
+                  New to Chitauri?{' '}
+                  <Link to="/register" className="text-blue-700 hover:underline">
+                    Register Here
+                  </Link>
+                </p>
       </div>
     </div>
   );
