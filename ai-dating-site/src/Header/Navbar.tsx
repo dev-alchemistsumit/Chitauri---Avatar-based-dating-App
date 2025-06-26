@@ -27,9 +27,6 @@ const Navbar = () => {
         <Link to="/avatar-room" className="hover:text-cyberpunk-accent">
           Avatar Room
         </Link>
-        <Link to="/relationship-stats" className="hover:text-cyberpunk-accent">
-          Relationship Stats
-        </Link>
       </div>
       <div className="flex items-center space-x-4">
         <Link to="/help" className="hover:text-cyberpunk-accent">

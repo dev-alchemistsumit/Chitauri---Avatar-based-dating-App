@@ -14,8 +14,8 @@ const avatarMap: Record<string, React.FC> = {
 
 const AvatarRoom = () => {
   const location = useLocation();
+  const selectedAvatar = location.pathname.split("/").pop(); // 'ava' or 'christina'
   const selectedAvatarKey = location.state?.selectedAvatar ?? "russian"; // fallback default
-
   const SelectedAvatarModel = avatarMap[selectedAvatarKey] || RussianGirl;
 
   return (
@@ -38,7 +38,7 @@ const AvatarRoom = () => {
       <section className="w-full md:w-1/2 p-4 bg-cyberpunk-bg flex flex-col rounded-lg shadow-md border border-cyberpunk-accent overflow-hidden">
         <h2 className="text-xl font-semibold mb-4">Chat with Avatar</h2>
         <div className="flex-grow overflow-y-auto ">
-          <ChatInterface />
+          <ChatInterface  character={selectedAvatar || "ava"} />
         </div>
       </section>
     </div>

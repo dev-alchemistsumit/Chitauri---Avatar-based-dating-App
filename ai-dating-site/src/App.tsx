@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./components/Home";
 import AvatarRoom from "./components/AvatarRoom";
-import RelationshipStats from "./components/RelationshipStats";
 import Help from "./components/Help";
 import AboutUs from "./components/AboutUs";
 
@@ -57,6 +56,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/chat/:character"
+          element={
+            <ProtectedRoute>
+              <>
+                <Navbar />
+                <AvatarRoom />
+              </>
+            </ProtectedRoute>
+          }
+        />
 
         {/* Protected Routes */}
         <Route
@@ -77,17 +87,6 @@ function App() {
               <>
                 <Navbar />
                 <AvatarRoom />
-              </>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/relationship-stats"
-          element={
-            <ProtectedRoute>
-              <>
-                <Navbar />
-                <RelationshipStats />
               </>
             </ProtectedRoute>
           }

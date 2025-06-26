@@ -1,35 +1,41 @@
-const express = require("express");
-const cors = require("cors");
-const OpenAI = require("openai");
-require("dotenv").config();
+const { OpenAI } = require("openai");
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-//Open AI SDK 4.x
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY});
+const prompts = {
+  ava: `You are Ava, a soft-spoken, romantic girl who is shy and her jewelry is shyness. She speaks like birds singing and moves like a waterfall, ready to explore the personality of the one who is asking for her and willing to fall in love with him.Lovely girl.`,
+  Christina: `You are Christina, a bold and take-it-or-leave-it girl. You speak your mind without hesitation and are unapologetically confident. Your words are sharp and direct, and you challenge those around you to be authentic. You are not afraid to push boundaries and expect others to keep up with your strong personality.Seducive girl. `
+};
 
-//chat endpoints
-app.post("/api/chat", async (req, res) => {
-  const { message } = req.body;
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const { message, history, character = "ava" } = req.body;
+
+  if (!message) {
+    return res.status(400).json({ error: "Message is required" });
+  }
+
+  const systemPrompt = prompts[character] || prompts.ava;
 
   try {
+    const messages = [
+      { role: "system", content: systemPrompt },
+      ...(history || []),
+      { role: "user", content: message },
+    ];
+
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // model
-      messages: [{ role: "user", content: message }],
+      model: "gpt-3.5-turbo",
+      messages,
     });
 
-    console.log(response)
     const reply = response.choices[0].message.content.trim();
-    res.json({ reply });
+    res.status(200).json({ reply });
   } catch (error) {
-    console.error("ChatGPT error:", error);
-    res.status(500).json({ error: "Failed to fetch response" });
+    console.error("OpenAI Error:", error.message);
+    res.status(500).json({ error: "Something went wrong" });
   }
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+}

@@ -1,51 +1,89 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { auth, db } from "../../src/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
-const LOCAL_KEY = 'chat_history';
-
-const ChatInterface = () => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
-  const [input, setInput] = useState('');
+const ChatInterface = ({ character }: { character: string }) => {
+  const [user, loading] = useAuthState(auth);
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
+    []
+  );
+  const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  // Load chat history from Firestore on login
   useEffect(() => {
-    const history = localStorage.getItem(LOCAL_KEY);
-    if (history) setMessages(JSON.parse(history));
-  }, []);
+    const fetchChatHistory = async () => {
+      if (loading || !user) return;
 
+      const userRef = doc(db, "users", user.uid, "avatars", character);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        if (data.conversations) {
+          setMessages(data.conversations);
+        }
+      } else {
+        await setDoc(userRef, { conversations: messages });
+      }
+    };
+
+    fetchChatHistory();
+  }, [user, loading]);
+
+  // Save chat history on every message update
   useEffect(() => {
-    localStorage.setItem(LOCAL_KEY, JSON.stringify(messages));
+    const saveChatHistory = async () => {
+      if (!user) return;
+
+      const userRef = doc(db, "users", user.uid, "avatars", character); // ✅ fix here
+      await updateDoc(userRef, { conversations: messages, });
+    };
+
+    if (user && messages.length > 0) {
+      saveChatHistory();
+    }
+
     scrollToBottom();
-  }, [messages]);
+  }, [messages, user]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  //ChatGPT assembly 
   const sendMessage = async () => {
-  if (!input.trim()) return;
+    if (!input.trim()) return;
 
-  const newMessages = [...messages, { sender: 'You', text: input }];
-  setMessages(newMessages);
-  setInput('');
+    const newMessages = [...messages, { sender: "You", text: input }];
+    setMessages(newMessages);
+    setInput("");
 
-  try {
-    const res = await fetch('http://localhost:5000/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: input }),
-    });
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: input,
+          character,
+          history: messages.map((msg) => ({
+            role: msg.sender === "You" ? "user" : "assistant",
+            content: msg.text,
+          })),
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    setMessages((prev) => [...prev, { sender: 'AI', text: data.reply }]);
-  } catch (error) {
-    console.error('ChatGPT Error:', error);
-    setMessages((prev) => [...prev, { sender: 'AI', text: 'Sorry, something went wrong.' }]);
-  }
-  
-};
-
+      setMessages((prev) => [...prev, { sender: "AI", text: data.reply }]);
+    } catch (error) {
+      console.error("ChatGPT Error:", error);
+      setMessages((prev) => [
+        ...prev,
+        { sender: "AI", text: "Sorry, something went wrong." },
+      ]);
+    }
+  };
 
   return (
     <div className="flex flex-col h-full max-h-screen overflow-hidden">
@@ -55,7 +93,9 @@ const ChatInterface = () => {
           <div
             key={i}
             className={`p-2 rounded text-sm sm:text-base break-words ${
-              msg.sender === 'You' ? 'bg-blue-600 self-end' : 'bg-purple-600 self-start'
+              msg.sender === "You"
+                ? "bg-blue-600 self-end text-white"
+                : "bg-purple-600 self-start text-white"
             }`}
           >
             <strong>{msg.sender}:</strong> {msg.text}
@@ -69,7 +109,7 @@ const ChatInterface = () => {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           className="flex-1 p-2 rounded bg-black/40 border border-cyberpunk-accent text-white outline-none"
           placeholder="Type a message..."
         />
