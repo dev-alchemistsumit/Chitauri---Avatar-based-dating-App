@@ -45,5 +45,5 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Don't forget to start the internal server for the ChatGPT to be and being used. 
-server `node index.js`
+## To start the server -
+`node src/server/index.js`  
