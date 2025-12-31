@@ -74,7 +74,6 @@ const ChatInterface = ({ character }: { character: string }) => {
       });
 
       const data = await res.json();
-
       setMessages((prev) => [...prev, { sender: "AI", text: data.reply }]);
     } catch (error) {
       console.error("ChatGPT Error:", error);
