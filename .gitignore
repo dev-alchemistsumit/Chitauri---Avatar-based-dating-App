@@ -24,3 +24,4 @@ yarn-error.log*
 
 #My Ignore's
 .env
+.vercel
