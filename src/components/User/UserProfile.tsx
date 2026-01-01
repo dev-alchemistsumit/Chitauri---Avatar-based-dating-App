@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import {
   doc,
@@ -13,7 +12,6 @@ import { Pencil } from "lucide-react"; // edit icon
 
 const UserProfile = () => {
   const [user, loading] = useAuthState(auth);
-  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
