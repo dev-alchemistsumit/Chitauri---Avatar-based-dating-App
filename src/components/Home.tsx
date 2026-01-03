@@ -1,5 +1,5 @@
 // src/components/Home.tsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Field_Image from "../assets/Field/field.jpg";
 import Field_Image2 from "../assets/Field/field2.jpg";

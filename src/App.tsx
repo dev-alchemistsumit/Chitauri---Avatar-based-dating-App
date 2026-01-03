@@ -1,7 +1,12 @@
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import Home from "./components/Home";
 import AvatarRoom from "./components/AvatarRoom";
@@ -124,6 +129,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Default room for new users */}
+        <Route path="/avatar-room" element={<AvatarRoom />} />
+        {/* Avatar-specific chat */}
+        <Route path="/chat/:avatar" element={<AvatarRoom />} />
+        {/* Explicit 404 */}
+        <Route path="/404" element={<PageNotFound />} />
+        {/* Catch-all */}
+        <Route path="*" element={<Navigate to="/404" replace />} />
         {/* Catch-all 404 route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>

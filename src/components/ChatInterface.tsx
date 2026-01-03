@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { auth, db } from "../../src/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
@@ -79,7 +79,7 @@ const ChatInterface = ({ character }: { character: string }) => {
       console.error("ChatGPT Error:", error);
       setMessages((prev) => [
         ...prev,
-        { sender: "AI", text: "Sorry, something went wrong." },
+        { sender: character, text: "Sorry, something went wrong." },
       ]);
     }
   };

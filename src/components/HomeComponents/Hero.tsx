@@ -14,7 +14,7 @@ const HeroSection = ({ image }: { image: string }) => (
         Craft your AI companion, explore Cyber relationships, and experience next-gen digital intimacy.
       </p>
       <Link
-        to="/avatar-room"
+        to="/chat/christina"
         className="px-6 py-3 bg-cyberpunk-accent text-black rounded-lg font-semibold hover:bg-opacity-90"
       >
         Get Started
