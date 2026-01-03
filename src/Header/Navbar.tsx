@@ -60,11 +60,11 @@ const Navbar = () => {
             </button>
 
             {open && (
-              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg overflow-hidden z-50">
+              <div className="absolute right-0 mt-2 w-40  bg-white text-black rounded-lg shadow-lg overflow-hidden z-50 ">
                 <Link
                   to="/Userprofile"
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-2 hover:bg-gray-100 transition"
+                  className="block px-4 py-2 hover:bg-blue-100 transition"
                 >
                   Profile
                 </Link>
