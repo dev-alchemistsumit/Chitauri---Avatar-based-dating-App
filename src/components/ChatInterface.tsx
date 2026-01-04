@@ -1,12 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { auth, db } from "../../src/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {
-  doc,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 
 type Message = {
   sender: string;
@@ -22,21 +17,20 @@ const ChatInterface = ({ character }: { character: string }) => {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const draftSaveTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const characterName =
-    character.charAt(0).toUpperCase() + character.slice(1);
+  const characterName = character.charAt(0).toUpperCase() + character.slice(1);
 
   /* ------------------------------
-     Firestore document reference
-  ------------------------------ */
+Firestore document reference
+------------------------------ */
   const getDocRef = () => {
     if (!user) return null;
     return doc(db, "users", user.uid, "avatars", character);
   };
 
   /* ------------------------------
-     REAL-TIME SYNC (messages + draft)
-     This is Telegram-class behavior
-  ------------------------------ */
+REAL-TIME SYNC (messages + draft)
+This is Telegram-class behavior
+------------------------------ */
   useEffect(() => {
     if (loading || !user) return;
 
@@ -62,16 +56,16 @@ const ChatInterface = ({ character }: { character: string }) => {
   }, [user, loading, character]);
 
   /* ------------------------------
-     AUTO SCROLL
-  ------------------------------ */
+AUTO SCROLL
+------------------------------ */
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   /* ------------------------------
-     DRAFT SYNC (debounced)
-     Fires after user pauses typing
-  ------------------------------ */
+DRAFT SYNC (debounced)
+Fires after user pauses typing
+------------------------------ */
   const handleDraftChange = (value: string) => {
     setInput(value);
 
@@ -91,8 +85,8 @@ const ChatInterface = ({ character }: { character: string }) => {
   };
 
   /* ------------------------------
-     SEND MESSAGE
-  ------------------------------ */
+SEND MESSAGE
+------------------------------ */
   const sendMessage = async () => {
     if (!input.trim() || !user || isSending) return;
 
@@ -150,8 +144,8 @@ const ChatInterface = ({ character }: { character: string }) => {
   };
 
   /* ------------------------------
-     UI
-  ------------------------------ */
+UI
+------------------------------ */
   return (
     <div className="flex flex-col h-full max-h-screen overflow-hidden">
       {/* Messages */}
