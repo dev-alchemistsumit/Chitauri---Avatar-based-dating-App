@@ -2,12 +2,11 @@
 
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import Avatar_Ava from "../components/AvatarModels/Avatar_Ava";
 import Avatar_Christina from "../components/AvatarModels/Avatar_Christina";
 import Avatar_Ichika from "./AvatarModels/Avatar_Ichika";
 import Avatar_Mita from "../components/AvatarModels/Avatar_Mita";
-import ChatInterface from "./ChatInterface";
+import ChatInterface from "./Chat/ChatInterface";
 
 //Registered Avatars
 const avatarMap: Record<string, React.FC> = {
@@ -19,7 +18,7 @@ const avatarMap: Record<string, React.FC> = {
 
 const VALID_AVATARS = Object.keys(avatarMap);
 const DEFAULT_AVATAR = "christina";
-  
+
 // AvatarRoom Component
 const AvatarRoom: React.FC = () => {
   const location = useLocation();

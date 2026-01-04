@@ -9,7 +9,7 @@ const Help = () => {
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">Need Assistance?</h2>
         <p className="text-lg text-gray-300">
-          At Chitauri, your comfort and experience are our top priorities. If you're
+          At Companion.ai, your comfort and experience are our top priorities. If you're
           facing any issues, have questions about your AI companion, or need technical help,
           you're in the right place.
         </p>
@@ -37,20 +37,20 @@ const Help = () => {
         <h2 className="text-xl font-semibold mb-3">Still Need Help?</h2>
         <p className="text-gray-300 mb-2">
           Contact our support team any time via email:
-          <a href="mailto:support@chitauri.app" className="text-cyberpunk-accent underline ml-2">
-            support@chitauri.app
+          <a href="mailto:support@Companion.ai.app" className="text-cyberpunk-accent underline ml-2">
+            support@Companion.ai.app
           </a>
         </p>
         <p className="text-gray-300">
           Or join our Discord community for real-time support and interaction:
-          <a href="https://discord.gg/chitauri" className="text-cyberpunk-accent underline ml-2">
-            discord.gg/chitauri
+          <a href="https://discord.gg/Companion.ai" className="text-cyberpunk-accent underline ml-2">
+            discord.gg/Companion.ai
           </a>
         </p>
       </section>
 
       <footer className="text-sm text-gray-500 pt-10 border-t border-gray-700 mt-10">
-        &copy; {new Date().getFullYear()} Chitauri – Your AI Companion for a Digital Age
+        &copy; {new Date().getFullYear()} Companion.ai – Your AI Companion for a Digital Age
       </footer>
     </div>
   );

@@ -12,9 +12,9 @@ const Footer = () => (
       <Link to="#" className="hover:text-white">Premier Access</Link>
     </div>
     <div className="text-center text-sm">
-      <p>The Chitauri - Avatar based Dating App ❤️ Bundle</p>
+      <p>The Companion.ai - Avatar based Dating App ❤️ Bundle</p>
       <p>
-        &copy; {new Date().getFullYear()} Chitauri - Avatar based Dating App ❤️. All Rights Reserved.
+        &copy; {new Date().getFullYear()} Companion.ai - Avatar based Dating App ❤️. All Rights Reserved.
       </p>
     </div>
   </footer>
