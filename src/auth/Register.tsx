@@ -96,6 +96,7 @@ const Register = () => {
             value={formData.password}
             onChange={handleChange}
           />
+          
           <button className="bg-blue-600 text-white font-bold py-3 rounded hover:bg-blue-700 transition">
             Register
           </button>
