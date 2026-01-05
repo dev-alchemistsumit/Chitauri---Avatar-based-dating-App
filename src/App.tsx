@@ -1,4 +1,3 @@
-import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -10,9 +9,8 @@ import {
 
 import Home from "./components/Home";
 import AvatarRoom from "./components/AvatarRoom";
-import Help from "./components/Help";
-import AboutUs from "./components/AboutUs";
-
+import Help from "./components/common/Help";
+import AboutUs from "./components/common/AboutUs";
 import Register from "../src/auth/Register";
 import Login from "../src/auth/Login";
 import ProtectedRoute from "../src/auth/ProtectedRoute";
@@ -22,6 +20,15 @@ import PublicRoute from "../src/auth/PublicRoute";
 import UserProfile from "./components/User/UserProfile";
 
 import Navbar from "./Header/Navbar"; // move inside protected layout
+import SubscriptionPage from "./components/Subscription/SubscriptionPage";
+import SubscriberAgreement from "./components/Subscription/Subscriber Agreement";
+import PrivacyPolicy from "./components/common/Privacy Policy";
+import PremierAccessSafetyTips from "./components/common/PremierAccessSafetyTips";
+import IntellectualProperty from "./components/common/Intellectual Property";
+import AccessibilityStatement from "./components/common/Accessibility Statement";
+import Security from "./components/common/Security";
+import Support from "./components/common/Support";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -103,6 +110,7 @@ function App() {
               <>
                 <Navbar />
                 <Help />
+                <Footer />
               </>
             </ProtectedRoute>
           }
@@ -114,12 +122,13 @@ function App() {
               <>
                 <Navbar />
                 <AboutUs />
+                <Footer />
               </>
             </ProtectedRoute>
           }
         />
         <Route
-          path="/Userprofile"
+          path="/userprofile"
           element={
             <ProtectedRoute>
               <>
@@ -129,16 +138,100 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* Default room for new users */}
+        <Route
+          path="/subscription-page"
+          element={
+            <ProtectedRoute>
+              <>
+                <Navbar />
+                <SubscriptionPage />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/subscriber-agreement"
+          element={
+            <ProtectedRoute>
+              <>
+                <SubscriberAgreement />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <ProtectedRoute>
+              <>
+                <PrivacyPolicy />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/premier-access"
+          element={
+            <ProtectedRoute>
+              <>
+                <PremierAccessSafetyTips />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/intellectual-property"
+          element={
+            <ProtectedRoute>
+              <>
+                <IntellectualProperty />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/accessibility-statement"
+          element={
+            <ProtectedRoute>
+              <>
+                <AccessibilityStatement />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/creator"
+          element={
+            <ProtectedRoute>
+              <>
+              <Navbar />
+                <Support />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/security"
+          element={
+            <ProtectedRoute>
+              <>
+                <Security />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
         <Route path="/avatar-room" element={<AvatarRoom />} />
-        {/* Avatar-specific chat */}
         <Route path="/chat/:avatar" element={<AvatarRoom />} />
-        {/* Explicit 404 */}
         <Route path="/404" element={<PageNotFound />} />
-        {/* Catch-all */}
         <Route path="*" element={<Navigate to="/404" replace />} />
-        {/* Catch-all 404 route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>

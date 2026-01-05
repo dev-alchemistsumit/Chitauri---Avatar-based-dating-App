@@ -5,7 +5,7 @@ import Field_Image3 from "../assets/Field/field3.jpg";
 import Hero from "./Home/Hero";
 import AIList from "./Home/AIList";
 import Review from "./Home/Review";
-import Footer from "./Home/Footer";
+import Footer from "./footer/Footer";
 import WelcomeModal from "../components/common/WelcomeModal";
 
 const headerImages = [Field_Image, Field_Image2, Field_Image3];

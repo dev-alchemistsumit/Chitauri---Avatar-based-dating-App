@@ -5,7 +5,6 @@ import {
   onSnapshot,
   setDoc,
   updateDoc,
-  DocumentSnapshot,
   DocumentData,
   DocumentReference,
 } from "firebase/firestore";

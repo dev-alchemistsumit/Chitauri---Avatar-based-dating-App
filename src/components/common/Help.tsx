@@ -1,6 +1,4 @@
 // src/components/Help.tsx
-import React from "react";
-
 const Help = () => {
   return (
     <div className="bg-cyberpunk-bg text-white min-h-screen p-8">

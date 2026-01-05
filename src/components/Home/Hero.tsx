@@ -8,7 +8,7 @@ const HeroSection = ({ image }: { image: string }) => (
       className="absolute inset-0 w-full h-full object-cover opacity-60"
     />
     <div className="relative z-10 flex flex-col items-center justify-center h-full">
-      <h1 className="text-5xl md:text-6xl font-bold mb-4">Welcome to Chitauri</h1>
+      <h1 className="text-5xl md:text-6xl font-bold mb-4">Welcome to Companion.ai</h1>
       <p className="text-xl md:text-2xl mb-6 text-center max-w-2xl">
         Explore Cyber relationships, and experience next-gen digital intimacy.
       </p>
