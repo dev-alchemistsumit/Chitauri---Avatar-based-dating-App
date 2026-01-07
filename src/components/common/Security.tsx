@@ -1,5 +1,3 @@
-import React from "react";
-
 const Security = () => {
   return (
     <div className="min-h-screen bg-gray-950 text-gray-200 px-6 py-12">

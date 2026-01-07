@@ -148,7 +148,7 @@ const Login = () => {
             </p>
 
             <p className="mt-4 text-sm text-center">
-              New to Chitauri?{" "}
+              New to Companion.ai?{" "}
               <Link to="/register" className="text-blue-700 hover:underline">
                 Register Here
               </Link>

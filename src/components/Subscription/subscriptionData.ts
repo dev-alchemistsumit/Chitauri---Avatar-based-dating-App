@@ -21,14 +21,6 @@ export const TIERS: {
   features: FeatureMap;
 }[] = [
   {
-    id: "free",
-    name: "Free",
-    price: "₹0",
-    features: {
-      match: true,
-    },
-  },
-  {
     id: "plus",
     name: "Plus",
     price: "₹299 / month",

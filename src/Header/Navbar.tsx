@@ -64,11 +64,20 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  function shareApplication() {
+    navigator.clipboard.writeText(
+      "https://companionai-avatar-based-dating-app-8o.vercel.app/home"
+    );
+    alert("Invite link copied to clipboard!");
+  }
+
   return (
     <nav className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center">
-
       <div className="flex items-center space-x-6">
-        <Link to="/home" className="text-xl font-bold hover:text-cyberpunk-accent">
+        <Link
+          to="/home"
+          className="text-xl font-bold hover:text-cyberpunk-accent"
+        >
           Companion.ai
         </Link>
         <Link to="/avatar-room" className="hover:text-cyberpunk-accent">
@@ -90,23 +99,33 @@ const Navbar = () => {
                   className="w-8 h-8 rounded-full object-cover border-2 border-cyberpunk-accent hover:opacity-90 transition"
                 />
               ) : (
-                <FaUserCircle size={28} className="hover:text-cyberpunk-accent" />
+                <FaUserCircle
+                  size={28}
+                  className="hover:text-cyberpunk-accent"
+                />
               )}
             </button>
 
             {open && (
-              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg overflow-hidden z-50">
+              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg overflow-hidden border shadow-xl/30-500 z-50">
                 <Link
-                  to="/Userprofile"
+                  to="/user-profile"
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-2 hover:bg-blue-100 transition"
+                  className="block px-4 py-2  hover:text-blue-600 transition"
                 >
                   Profile
                 </Link>
-
+                <div className="h-px mx-2 bg-gray-200" />
+                <button
+                  onClick={() => shareApplication()}
+                  className="w-full text-left px-4 py-2  hover:text-green-600 transition"
+                >
+                  Send Invite
+                </button>
+                <div className="h-px mx-2 bg-gray-200" />
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 hover:bg-red-100 hover:text-red-600 transition"
+                  className="w-full text-left px-4 py-2  hover:text-red-600 transition"
                 >
                   Logout
                 </button>

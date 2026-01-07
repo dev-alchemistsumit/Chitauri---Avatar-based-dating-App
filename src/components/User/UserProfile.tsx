@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { auth, db } from "../../firebase";
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Pencil } from "lucide-react";
+import { Plus, X ,Minus} from "lucide-react";
+
 
 const UserProfile = () => {
   const [user, loading] = useAuthState(auth);
@@ -10,6 +11,7 @@ const UserProfile = () => {
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+  const [subscription, setSubscription] = useState("");
   const [gender, setGender] = useState("");
   const [bio, setBio] = useState("");
   const [photo, setPhoto] = useState<File | null>(null);
@@ -32,6 +34,7 @@ const UserProfile = () => {
           const data = snap.data();
           setName(data.name || "");
           setAge(data.age || "");
+          setSubscription(data.subscription || "Free");
           setGender(data.gender || "");
           setBio(data.bio || "");
           setPhotoPreview(data.photoURL || "");
@@ -39,6 +42,7 @@ const UserProfile = () => {
           await setDoc(userRef, {
             name: "",
             age: "",
+            subscription: "",
             gender: "",
             bio: "",
             photoURL: "",
@@ -61,7 +65,7 @@ const UserProfile = () => {
     if (!user) return;
 
     const userRef = doc(db, "users", user.uid);
-    const updates: any = { name, age, bio, gender };
+    const updates: any = { name, age, subscription, bio, gender };
 
     try {
       if (photo) {
@@ -90,49 +94,99 @@ const UserProfile = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-blue-100 p-4">
-      <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-cyberpunk-accent">
-            Your Profile
-          </h2>
+      <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg border shadow-black/20">
+        <div className="justify-end flex">
           <button
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={() => setIsEditing((isEditing) => !isEditing)}
             className="text-cyberpunk-accent hover:text-black"
           >
-            <Pencil className="w-5 h-5" />
+            {isEditing ? (
+              <Minus size={50} absoluteStrokeWidth />
+            ) : (
+              <Plus size={50} absoluteStrokeWidth   />
+            )}
           </button>
         </div>
 
-        {photoPreview && (
-          <div className="flex justify-center mb-4">
-            <img
-              src={photoPreview}
-              alt="Profile"
-              className="w-24 h-24 rounded-full object-cover border-4 border-cyberpunk-accent"
-            />
-          </div>
-        )}
+        <div className="flex justify-center items-center mb-6">
+          {photoPreview && (
+            <div className="flex justify-center mb-4">
+              <img
+                src={photoPreview}
+                alt="Profile"
+                className="w-24 h-24 rounded-full object-cover border-4 border-cyberpunk-accent"
+              />
+            </div>
+          )}
+        </div>
 
         {!isEditing ? (
           <div className="border p-4 rounded bg-gray-50 text-sm">
-            <p><strong>Name:</strong> {name || "Not set"}</p>
-            <p><strong>Age:</strong> {age || "Not set"}</p>
-            <p><strong>Gender:</strong> {gender || "Not set"}</p>
-            <p><strong>Bio:</strong> {bio || "Not set"}</p>
+            <p>
+              <strong>Name:</strong> {name || "Not set"}
+            </p>
+            <p>
+              <strong>Age:</strong> {age || "Not set"}
+            </p>
+            <p>
+              <strong>My Subscription :</strong> {subscription}
+            </p>
+            <p>
+              <strong>Gender:</strong> {gender || "Not set"}
+            </p>
+            <p>
+              <strong>Bio:</strong> {bio || "Not set"}
+            </p>
           </div>
         ) : (
           <form onSubmit={handleUpdate} className="flex flex-col space-y-4">
-            <input value={name} onChange={e => setName(e.target.value)} className="p-3 border rounded" />
-            <input value={age} onChange={e => setAge(e.target.value)} className="p-3 border rounded" />
-            <textarea value={bio} onChange={e => setBio(e.target.value)} className="p-3 border rounded" />
-            <select value={gender} onChange={e => setGender(e.target.value)} className="p-3 border rounded">
-              <option value="">Select Gender</option>
+            <input
+              value={name}
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+              className="p-3 border rounded"
+            />
+            <input
+              value={age}
+              placeholder="Age"
+              onChange={(e) => setAge(e.target.value)}
+              className="p-3 border rounded"
+            />
+
+            <select
+              value={subscription}
+              onChange={(e) => setSubscription(e.target.value)}
+              className="p-3 border rounded"
+            >
+              <option>Select Subscription</option>
+              <option>Plus</option>
+              <option>Gold</option>
+              <option>Platinum</option>
+            </select>
+
+            <textarea
+              value={bio}
+              placeholder="Bio"
+              onChange={(e) => setBio(e.target.value)}
+              className="p-3 border rounded"
+            />
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="p-3 border rounded"
+            >
+              <option>Select Gender</option>
               <option>Male</option>
               <option>Female</option>
               <option>Other</option>
             </select>
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-            <button className="bg-cyberpunk-accent py-3 rounded font-bold">
+            <input
+              type="file"
+              placeholder="Profile Image"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+            <button className="bg-cyberpunk-accent py-3 rounded font-bold text-white hover:bg-opacity-90 transition">
               Save Changes
             </button>
           </form>

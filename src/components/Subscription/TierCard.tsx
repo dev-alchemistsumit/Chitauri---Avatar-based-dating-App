@@ -9,7 +9,7 @@ type Props = {
 const TierCard = ({ name, price, highlight }: Props) => {
   return (
     <div
-      className={`rounded-2xl p-6 text-center border transition
+      className={`rounded-2xl m-6 p-6 text-center border transition
         ${highlight
           ? "border-cyberpunk-accent bg-gradient-to-b from-purple-900/40 to-black scale-105"
           : "border-gray-700 bg-black/40"}

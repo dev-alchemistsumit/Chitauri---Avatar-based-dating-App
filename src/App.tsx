@@ -59,15 +59,6 @@ function App() {
             </PublicRoute>
           }
         />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <UserProfile />
-            </ProtectedRoute>
-          }
-        />
         <Route
           path="/chat/:character"
           element={
@@ -116,7 +107,7 @@ function App() {
           }
         />
         <Route
-          path="/about"
+          path="/about-us"
           element={
             <ProtectedRoute>
               <>
@@ -128,7 +119,7 @@ function App() {
           }
         />
         <Route
-          path="/userprofile"
+          path="/user-profile"
           element={
             <ProtectedRoute>
               <>

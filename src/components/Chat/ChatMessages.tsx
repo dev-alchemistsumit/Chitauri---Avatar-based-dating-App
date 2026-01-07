@@ -13,9 +13,7 @@ export const ChatMessages = ({
       <div
         key={i}
         className={`p-2 rounded text-sm max-w-[80%] ${
-          msg.sender === "You"
-            ? "bg-blue-600 ml-auto"
-            : "bg-purple-600 mr-auto"
+          msg.sender === "You" ? "bg-blue-600 ml-auto" : "bg-purple-600 mr-auto"
         }`}
       >
         <strong>{msg.sender}:</strong> {msg.text}

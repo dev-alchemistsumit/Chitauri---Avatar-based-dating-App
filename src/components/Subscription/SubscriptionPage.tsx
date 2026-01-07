@@ -2,13 +2,13 @@
 import TierCard from "./TierCard";
 import FeatureTable from "./FeatureTable";
 import { TIERS } from "./subscriptionData";
-import Footer from "../footer/Footer";
+import { Link } from "react-router-dom";
 
 const SubscriptionPage = () => {
   return (
     <div>
       <div className="min-h-screen bg-cyberpunk-bg text-white px-6 py-16">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto justify-center">
           {/* Hero */}
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold mb-4">Subscription Tiers</h1>
@@ -19,14 +19,19 @@ const SubscriptionPage = () => {
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
             {TIERS.map((tier) => (
-              <TierCard
+              <Link
                 key={tier.id}
-                name={tier.name}
-                price={tier.price}
-                highlight={tier.highlight}
-              />
+                to="/user-profile"
+                className="  block"
+              >
+                <TierCard
+                  name={tier.name}
+                  price={tier.price}
+                  highlight={tier.highlight}
+                />
+              </Link>
             ))}
           </div>
 
