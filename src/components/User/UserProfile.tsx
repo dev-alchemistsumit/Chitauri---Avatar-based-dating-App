@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { auth, db } from "../../firebase";
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Plus, X ,Minus} from "lucide-react";
+import { Pen, Pencil, X } from "lucide-react";
 
 
 const UserProfile = () => {
@@ -101,9 +101,9 @@ const UserProfile = () => {
             className="text-cyberpunk-accent hover:text-black"
           >
             {isEditing ? (
-              <Minus size={50} absoluteStrokeWidth />
+              <X size={35} absoluteStrokeWidth />
             ) : (
-              <Plus size={50} absoluteStrokeWidth   />
+              <Pencil size={27} absoluteStrokeWidth   />
             )}
           </button>
         </div>
