@@ -1,5 +1,5 @@
 import React from "react";
-import  {QRCodeCanvas}  from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 
 const UPI_ID = "sumit2329@ptyes";
 
@@ -28,23 +28,23 @@ const Support: React.FC = () => {
             connection.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-6">
             <a
               href="https://github.com/dev-alchemistsumit"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-indigo-400 hover:text-indigo-300 transition"
+              className=" text-indigo-400 hover:text-indigo-300 transition "
             >
-              GitHub → dev-alchemistsumit
+              Github → dev-alchemistsumit
             </a>
 
             <a
               href="https://x.com/alchemistsumit"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-indigo-400 hover:text-indigo-300 transition"
+              className=" text-indigo-400 hover:text-indigo-300 transition "
             >
-              X (Twitter) → @alchemistsumit
+              X → @alchemistsumit
             </a>
           </div>
         </section>

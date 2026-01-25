@@ -17,8 +17,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  /* ---------------- Login ---------------- */
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -31,8 +29,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-
-  /* ------------- Password Reset ---------- */
 
   const handlePasswordReset = async (e: React.FormEvent) => {
     e.preventDefault();
